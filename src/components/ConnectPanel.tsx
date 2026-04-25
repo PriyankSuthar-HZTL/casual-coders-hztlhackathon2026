@@ -163,7 +163,7 @@ export default function ConnectPanel({ mode, onClose }: Props) {
               <span className="text-accent">setup</span>
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted sm:text-[15px]">
-              Stackshift needs a Management Token to read content types and
+              MigrateX needs a Management Token to read content types and
               create entries. Stored in{" "}
               <code className="rounded bg-paper-2 px-1 font-mono text-xs text-ink">
                 localStorage

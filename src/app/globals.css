@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App shell — subtle mesh, readable contrast */
+body {
+  background-color: #fafafa;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(79, 70, 229, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(5, 150, 105, 0.04), transparent);
+  min-height: 100vh;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #18181b;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(79, 70, 229, 0.18);
+  color: #18181b;
+}
+
+/* Focus — visible ring, offset for contrast on dark controls */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #fafafa, 0 0 0 4px rgba(79, 70, 229, 0.35);
+  border-radius: 0.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Confidence bar fill — inline --w from React */
+.conf-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--w, 80%);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 9999px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

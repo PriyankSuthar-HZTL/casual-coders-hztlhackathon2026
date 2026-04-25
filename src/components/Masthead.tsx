@@ -26,7 +26,7 @@ export default function Masthead() {
       <div className="mx-auto flex max-w-[1400px] flex-col gap-5 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-5 lg:px-12">
         <div className="min-w-0">
           <h1 className="font-sans text-3xl font-semibold tracking-tight text-ink sm:text-[2.35rem] sm:leading-none">
-            Stack<span className="text-accent">shift</span>
+            Migrate<span className="text-accent">X</span>
           </h1>
           <p className="mt-1.5 max-w-xl text-sm text-muted sm:text-[13px]">
             Migrate live pages into Contentstack — scan, map, and push entries in one flow.

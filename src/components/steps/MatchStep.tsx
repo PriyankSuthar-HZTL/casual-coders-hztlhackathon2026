@@ -47,9 +47,14 @@ export default function MatchStep() {
   const selectedComponents = components.filter((c) =>
     selectedIds.includes(c.id),
   );
-  const allResolved = matches.every(
-    (m) => m.status === "matched" || m.status === "partial",
+
+  // Only primary-URL components (sourceUrlIndex 0 or unset) must be resolved to proceed.
+  const primaryComponents = selectedComponents.filter(
+    (c) => !c.sourceUrlIndex,
   );
+  const allResolved = matches
+    .filter((m) => primaryComponents.some((c) => c.id === m.componentId))
+    .every((m) => m.status === "matched" || m.status === "partial");
 
   const handleCreate = async (c: DetectedComponent) => {
     setErr(null);
@@ -66,6 +71,12 @@ export default function MatchStep() {
         return;
       }
       setMatchResolved(c.id, data.contentType.uid, data.contentType.title);
+      // Auto-resolve secondary URL components of the same kind to the newly created CT.
+      selectedComponents
+        .filter((sc) => sc.sourceUrlIndex && sc.sourceUrlIndex > 0 && sc.kind === c.kind)
+        .forEach((sc) => {
+          setMatchResolved(sc.id, data.contentType!.uid, data.contentType!.title);
+        });
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Network error.");
     } finally {
@@ -128,8 +139,13 @@ export default function MatchStep() {
                   <tr className="border-b border-line/60 transition-colors hover:bg-paper-2/80">
                     <td className="px-4 py-4 align-middle sm:px-5">
                       <div className="font-semibold text-ink">{c.name}</div>
-                      <div className="mt-1 font-mono text-[10px] uppercase tracking-wide text-muted">
-                        {c.suggestedUid}
+                      <div className="mt-1 flex flex-wrap items-center gap-1.5 font-mono text-[10px] uppercase tracking-wide text-muted">
+                        <span>{c.suggestedUid}</span>
+                        {c.sourceUrlIndex != null && c.sourceUrlIndex > 0 && (
+                          <span className="rounded border border-line bg-paper-2 px-1.5 py-0.5 text-[9px] normal-case tracking-normal text-muted">
+                            URL {c.sourceUrlIndex + 1}
+                          </span>
+                        )}
                       </div>
                     </td>
                     <td className="px-4 py-4 align-middle text-muted sm:px-5">
@@ -145,26 +161,30 @@ export default function MatchStep() {
                       <div className="flex flex-row items-center gap-2">
                         {match.status === "missing" ||
                         match.status === "partial" ? (
-                          <button
-                            type="button"
-                            className={'inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-accent px-4 py-2 text-xs font-medium text-white shadow-sm transition-all duration-150 hover:border-accent hover:text-accent hover:bg-transparent hover:shadow-md active:scale-[0.99] disabled:pointer-events-none disabled:opacity-40'}
-                            onClick={() => void handleCreate(c)}
-                            disabled={creatingId === c.id || dryRun}
-                            title={
-                              dryRun ? "Disabled in dry-run mode" : undefined
-                            }
-                          >
-                            {creatingId === c.id ? (
-                              <>
-                                <span className="inline-block h-3 w-3 shrink-0 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                                Creating…
-                              </>
-                            ) : (
-                              <>
-                                <Sparkles size={12} aria-hidden /> Create type
-                              </>
-                            )}
-                          </button>
+                          c.sourceUrlIndex != null && c.sourceUrlIndex > 0 ? (
+                            <span className="font-mono text-[10px] font-medium uppercase tracking-wide text-muted">
+                              Auto-resolves from primary URL
+                            </span>
+                          ) : (
+                            <button
+                              type="button"
+                              className={'inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-accent px-4 py-2 text-xs font-medium text-white shadow-sm transition-all duration-150 hover:border-accent hover:text-accent hover:bg-transparent hover:shadow-md active:scale-[0.99] disabled:pointer-events-none disabled:opacity-40'}
+                              onClick={() => void handleCreate(c)}
+                              disabled={creatingId === c.id || dryRun}
+                              title={dryRun ? "Disabled in dry-run mode" : undefined}
+                            >
+                              {creatingId === c.id ? (
+                                <>
+                                  <span className="inline-block h-3 w-3 shrink-0 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                                  Creating…
+                                </>
+                              ) : (
+                                <>
+                                  <Sparkles size={12} aria-hidden /> Create type
+                                </>
+                              )}
+                            </button>
+                          )
                         ) : (
                           <span className="font-mono text-[10px] font-medium uppercase tracking-wide text-muted">
                             Reusing

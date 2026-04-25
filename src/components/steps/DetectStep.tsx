@@ -56,7 +56,7 @@ export default function DetectStep() {
         return;
       }
       setMatches(data.matches);
-      setStep("match");
+      setStep("integrations");
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Network error.");
     } finally {
@@ -113,7 +113,7 @@ export default function DetectStep() {
                 </>
               ) : (
                 <>
-                  Continue to matching <ArrowRight size={14} aria-hidden />
+                  Continue to integrations <ArrowRight size={14} aria-hidden />
                 </>
               )}
             </button>
@@ -248,7 +248,7 @@ function DetectionMethodBadge({ method }: { method: string }) {
     },
     llm: {
       icon: <Bot size={11} strokeWidth={2} />,
-      label: "AI detection — Gemini",
+      label: "AI detection",
       cls: "border-emerald-200 bg-green-muted text-brand-green",
     },
     hybrid: {

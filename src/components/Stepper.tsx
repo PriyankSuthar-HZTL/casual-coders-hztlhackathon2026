@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 const STEPS: { key: StepKey; label: string; hint: string }[] = [
   { key: "url", label: "URL", hint: "Scan a page" },
   { key: "detect", label: "Detect", hint: "Review blocks" },
+  { key: "integrations", label: "Integrate", hint: "Jira/Confluence" },
   { key: "match", label: "Match", hint: "Map types" },
   { key: "page", label: "Page", hint: "Page type" },
   { key: "preview", label: "Preview", hint: "Edit & verify" },
