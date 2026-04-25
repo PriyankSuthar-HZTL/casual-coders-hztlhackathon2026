@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:demo-website-mocha.vercel.app)",
+      "WebFetch(domain:demo-logistic-gold.vercel.app)",
+      "Bash(curl -sL \"https://demo-website-mocha.vercel.app/\")",
+      "Bash(curl -sL \"https://demo-logistic-gold.vercel.app/\")",
+      "Bash(sed -n '525,540p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '925,940p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '125,145p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '197,215p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '265,275p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '396,435p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '590,645p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '685,710p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(sed -n '773,840p' /Users/saadpatel/Desktop/stackshift/src/lib/detector.ts)",
+      "Bash(npx tsc *)",
+      "Bash(/usr/local/bin/npx tsc *)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/saadpatel/.nvm/versions/node/**)",
+      "Bash(export PATH=\"/Users/saadpatel/.nvm/versions/node/v22.22.2/bin:$PATH\")",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(/usr/local/bin/node node_modules/.bin/tsc --noEmit)",
+      "Read(//Users/saadpatel/.volta/bin/**)",
+      "Bash(/Users/saadpatel/.nvm/versions/node/v22.22.2/bin/node /Users/saadpatel/Desktop/stackshift/node_modules/.bin/tsc --noEmit)",
+      "Bash(/Users/saadpatel/.nvm/versions/node/v22.22.2/bin/node -e ' *)",
+      "Bash(npm run *)",
+      "Bash(/usr/local/bin/npm run *)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v22.22.2/bin:$PATH\")",
+      "Bash(npx next *)",
+      "Bash(npx eslint *)"
+    ]
+  }
+}

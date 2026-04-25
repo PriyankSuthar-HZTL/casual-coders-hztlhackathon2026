@@ -1,0 +1,35 @@
+---
+description: React component patterns — directives, store access, naming, Tailwind tokens. Use when creating or editing React components.
+globs: src/components/**/*.tsx,src/app/page.tsx
+alwaysApply: false
+---
+
+# Component Conventions
+
+- All interactive components use `"use client"` directive
+- Functional components only — no class components
+- Access state via `useStackshift()` Zustand hook with selectors
+- Use Tailwind utility classes exclusively — no CSS modules or styled-components
+- Icons from `lucide-react` (import individually)
+- Fetch API routes via `fetch("/api/...", { method: "POST", body: JSON.stringify(payload) })`
+
+## Store Access Pattern
+
+```typescript
+const { url, setUrl, goTo } = useStackshift();
+```
+
+## Naming
+
+- Step components: `{Name}Step.tsx` in `src/components/steps/`
+- Panel/overlay components: `{Name}Panel.tsx` in `src/components/`
+- One component per file, named export matching filename
+
+## Design Tokens (Tailwind)
+
+- Backgrounds: `bg-paper`, `bg-card`, `bg-ink`
+- Text: `text-ink`, `text-muted`, `text-accent`
+- Borders: `border-line`, `border-2`
+- Shadows: `shadow-hard`, `shadow-hard-sm`, `shadow-btn-accent`
+- Fonts: `font-serif` (headings), `font-sans` (body), `font-mono` (code/data)
+- Animations: `animate-fade-in`, `animate-stage-in`

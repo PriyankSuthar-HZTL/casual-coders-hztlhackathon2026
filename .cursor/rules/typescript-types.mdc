@@ -1,0 +1,14 @@
+---
+description: TypeScript type conventions — naming, location, snake_case vs camelCase. Use when creating or editing types, interfaces, or API request/response shapes.
+alwaysApply: false
+---
+
+# TypeScript Conventions
+
+- Strict mode enabled — no `any` unless truly unavoidable
+- Shared types live in `src/types/index.ts` — import from `@/types`
+- API request/response pairs follow `{Action}Request` / `{Action}Response` naming
+- Use `interface` for object shapes, `type` for unions and aliases
+- Contentstack API types use `snake_case` field names to match their API
+- App-domain types use `camelCase`
+- Every API route handler should type-annotate its parsed body: `const body = (await req.json()) as MyRequest`

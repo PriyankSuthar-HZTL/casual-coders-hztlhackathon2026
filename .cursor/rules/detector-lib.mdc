@@ -1,0 +1,24 @@
+---
+description: Conventions for the Cheerio-based detector library
+globs: src/lib/detector.ts
+alwaysApply: false
+---
+
+# Detector Library
+
+`src/lib/detector.ts` uses Cheerio to parse HTML and detect structural components.
+
+## How It Works
+
+- Loads HTML with `cheerio.load(html)`
+- Runs scored structural rules (not site-specific IDs/classes)
+- Each rule targets a `ComponentKind`: hero, faq, testimonial, media_gallery, card_grid, feature_list, cta_banner, rich_text (fallback)
+- Rules return `DetectedComponent[]` with fields, confidence (0..1), CSS selector, and preview snippet
+
+## Adding a New Component Kind
+
+1. Add the kind to `ComponentKind` union in `src/types/index.ts`
+2. Add a detection rule in the `RULES` array in `detector.ts`
+3. Define field extraction logic that returns `DetectedField[]`
+4. Ensure the rule has a meaningful confidence score
+5. Update `generateContentTypeSchema` in `src/lib/contentstack.ts` to handle the new kind

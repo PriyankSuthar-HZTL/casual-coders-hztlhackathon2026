@@ -1,0 +1,30 @@
+---
+description: Tailwind design tokens, color palette, shadows, and font conventions. Use when styling components or editing CSS.
+globs: src/app/globals.css,tailwind.config.ts
+alwaysApply: false
+---
+
+# Styling
+
+- **Tailwind-first** — all styling via utility classes; no CSS modules or styled-components
+- Global CSS is minimal (`src/app/globals.css`): body gradient, font smoothing, focus-visible, selection color, `.conf-fill`
+- Custom theme tokens are defined in `tailwind.config.ts` — use semantic names not raw hex
+
+## Color Palette
+
+| Token | Use |
+|-------|-----|
+| `paper` / `paper-2` / `paper-3` | Backgrounds |
+| `ink` / `ink-soft` | Primary text |
+| `accent` / `accent-2` | CTAs, active states |
+| `muted` / `muted-soft` | Secondary text |
+| `brand-green` / `green-soft` | Success states |
+| `card` / `card-hi` | Card backgrounds |
+
+## Neo-Brutalist Shadows
+
+Use `shadow-hard` for cards, `shadow-btn-accent` / `shadow-btn-ink` for buttons, `shadow-hard-sm` for small elements.
+
+## Fonts
+
+`font-serif` (Fraunces) for headings, `font-sans` (Inter Tight) for body, `font-mono` (JetBrains Mono) for code/data.

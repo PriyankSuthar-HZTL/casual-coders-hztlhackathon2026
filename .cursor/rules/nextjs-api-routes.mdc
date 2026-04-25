@@ -1,0 +1,32 @@
+---
+description: Conventions for Next.js App Router API routes in Stackshift
+globs: src/app/api/**/*.ts
+alwaysApply: false
+---
+
+# API Route Conventions
+
+- Export `async function POST(req: Request)` — all routes are POST-only
+- Set `export const runtime = "nodejs"` for server-side libs (Cheerio, axios, form-data)
+- Parse body with `await req.json()` and validate required fields early
+- Return typed JSON: `NextResponse.json<ResponseType>({ ok: true, ... })`
+- On error: return `{ ok: false, error: "message" }` with appropriate status (400/500/502)
+- Import types from `@/types` for request/response shapes
+- Import Contentstack helpers from `@/lib/contentstack`
+
+```typescript
+// Pattern
+import { NextResponse } from "next/server";
+import type { MyRequest, MyResponse } from "@/types";
+
+export const runtime = "nodejs";
+
+export async function POST(req: Request) {
+  const body = (await req.json()) as MyRequest;
+  if (!body.requiredField) {
+    return NextResponse.json<MyResponse>({ ok: false, error: "missing_field" }, { status: 400 });
+  }
+  // ...
+  return NextResponse.json<MyResponse>({ ok: true, data });
+}
+```

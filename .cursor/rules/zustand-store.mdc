@@ -1,0 +1,23 @@
+---
+description: Zustand store patterns and conventions
+globs: src/store/**/*.ts
+alwaysApply: false
+---
+
+# Zustand Store
+
+Single store at `src/store/index.ts` using `create<StackshiftState>()` with `persist` middleware.
+
+## Persistence
+
+- Name: `stackshift-v1` (localStorage)
+- **Persisted:** `config`, `connectionOk`, `contentTypeCount`, `stackName`, `connectedAt`
+- **In-memory:** `currentStep`, `url`, `components`, `matches`, `migrationResult`, UI flags
+- Uses `skipHydration: true` + `useStoreHydration()` hook to avoid SSR mismatch
+
+## Patterns
+
+- Keep actions as methods on the store (not external functions)
+- Use `set(state => ({ ... }))` for updates that depend on current state
+- New persisted fields must be added to the `partialize` function
+- State shape is defined by `StackshiftState` interface in the store file

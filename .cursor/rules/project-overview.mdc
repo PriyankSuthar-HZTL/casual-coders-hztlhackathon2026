@@ -1,0 +1,29 @@
+---
+description: Stackshift project overview and architecture context
+alwaysApply: true
+---
+
+# Stackshift — Project Context
+
+Stackshift is a Next.js 16 wizard that scrapes a live URL, detects structural components via Cheerio heuristics, maps them to Contentstack content types, and migrates entries via the Management API.
+
+## Architecture
+
+- **App Router** only (`src/app/`) — no `pages/` directory
+- **API routes** at `src/app/api/` handle all server-side work (scrape, login, test, match, create-content-type, migrate)
+- **Zustand store** (`src/store/index.ts`) with `persist` middleware — credentials in localStorage, migration state in-memory
+- **Types** centralized at `src/types/index.ts`
+- **Lib** layer (`src/lib/`) for detector logic, Contentstack client, and entry-title generation
+- Path alias: `@/*` → `./src/*`
+
+## Wizard Steps
+
+`url` → `detect` → `match` → `preview` → `done`
+
+## Stack
+
+Next.js 16 (Turbopack), React 19, TypeScript 5.7 (strict), Tailwind CSS 3.4, Zustand 5, Cheerio 1, axios, lucide-react
+
+## Design System
+
+Neo-brutalist aesthetic: `paper`/`ink` palette, `hard` box shadows, Inter Tight (sans), Fraunces (serif), JetBrains Mono (mono)
