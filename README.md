@@ -13,6 +13,13 @@ MigrateX is a Next.js 16 web wizard that scrapes any public webpage, detects reu
 - A [Contentstack](https://www.contentstack.com/) account with access to a stack
 - Google Gemini API Key: a [Google AI Studio](https://aistudio.google.com/apikey) Gemini API key for AI detection
 
+##CotentStack Credential
+Link: https://app.contentstack.com/#!/stacks
+Stack Name: Hacka-26
+Email: Hackathon.Committee@horizontal.com
+Password: Hackathon@2026
+Stack API Key: blt8676802c42cf92c0
+
 Check your local versions:
 
 ```bash
