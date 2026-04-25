@@ -48,7 +48,7 @@ export default function Masthead() {
                     Connected
                   </span>
                   <p className="truncate text-[13px] font-medium text-ink">
-                    {shortStack} · {region.toUpperCase()} ·{" "}
+                    {region === "na" ? "North America" : region === "eu" ? "EU" : region === "au" ? "AU" : region === "azure-na" ? "Azure US" : region === "azure-eu" ? "Azure EU" : region === "gcp-na" ? "GCP US" : region} ·{" "}
                     {contentTypeCount ?? 0} types
                     {connectedAt ? ` · ${timeAgo(connectedAt)}` : ""}
                   </p>

@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "MigrateX — Lift and shift, minus the shift.",
   description:
     "Migrate live-page content into Contentstack CMS in under a minute.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

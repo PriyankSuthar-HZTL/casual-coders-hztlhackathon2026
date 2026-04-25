@@ -385,8 +385,7 @@ export default function UrlStep() {
               <div className="mt-4 flex flex-col gap-3 rounded-lg border border-accent/25 bg-accent-muted/50 px-4 py-3 sm:flex-row sm:items-center">
                 <AlertCircle size={16} className="shrink-0 text-accent" aria-hidden />
                 <p className="flex-1 text-sm text-ink">
-                  AI detection requires a verified API key (or Groq with
-                  server-side GROQ_API_KEY).
+                  AI detection requires a verified API key.
                 </p>
                 <button
                   type="button"
